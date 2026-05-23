@@ -1,0 +1,17 @@
+.git
+.gitignore
+.env.local
+.env.*.local
+node_modules
+.next
+.prisma
+.vscode
+.idea
+*.md
+!README.md
+coverage
+.DS_Store
+*.log
+.turbo
+.pnpm-lock.yaml
+yarn.lock

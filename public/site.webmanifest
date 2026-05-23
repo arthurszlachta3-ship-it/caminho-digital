@@ -1,0 +1,67 @@
+{
+  "name": "Caminho Digital - Turbine Suas Redes",
+  "short_name": "Caminho Digital",
+  "description": "ERP de Presença Digital com Agentes IA. Monitore e otimize Instagram, TikTok, YouTube e Website em um só lugar.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0a0a0a",
+  "theme_color": "#10b981",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "any",
+      "type": "image/x-icon"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/apple-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "screenshots": [
+    {
+      "src": "/og-image.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Fazer Diagnóstico",
+      "short_name": "Diagnóstico",
+      "description": "Fazer diagnóstico gratuito de presença digital",
+      "url": "/?action=diagnosis",
+      "icons": [
+        {
+          "src": "/favicon.ico",
+          "sizes": "any",
+          "type": "image/x-icon"
+        }
+      ]
+    },
+    {
+      "name": "Acessar Dashboard",
+      "short_name": "Dashboard",
+      "description": "Acessar seu painel de controle",
+      "url": "/login",
+      "icons": [
+        {
+          "src": "/favicon.ico",
+          "sizes": "any",
+          "type": "image/x-icon"
+        }
+      ]
+    }
+  ]
+}

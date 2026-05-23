@@ -1,0 +1,42 @@
+# Robots.txt for turbinesuasredes.com.br
+# Last updated: 2026-05-22
+
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+Disallow: /auth/
+Disallow: /private/
+Disallow: /.well-known/
+Disallow: /admin
+Disallow: /__nextjs_original-stack-frame
+Disallow: /*?*sort=
+Disallow: /*?*filter=
+Disallow: /*.json$
+
+# Specific crawlers
+User-agent: Googlebot
+Allow: /
+Allow: /api/
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+# Sitemaps
+Sitemap: https://turbinesuasredes.com.br/sitemap.xml
+Sitemap: https://turbinesuasredes.com.br/sitemap-products.xml
+
+# Canonical domain
+Canonical: https://turbinesuasredes.com.br
