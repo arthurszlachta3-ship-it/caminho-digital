@@ -3,11 +3,11 @@
 import { useDiagnostic } from '@/hooks/useDiagnostic'
 import { DiagnosticForm } from './DiagnosticForm'
 import { DiagnosticScore } from './DiagnosticScore'
-import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
+import { ArrowRight, Sparkles } from 'lucide-react'
 
 export function DiagnosticPageClient() {
-  const { result, reset } = useDiagnostic()
+  const { result, reset, loading, error, analyze } = useDiagnostic()
 
   if (result) {
     return (
@@ -15,8 +15,21 @@ export function DiagnosticPageClient() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="space-y-8"
+        className="space-y-12"
       >
+        {/* Result Header */}
+        <div className="text-center mb-8">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 mb-4">
+            <Sparkles className="w-4 h-4 text-blue-400" />
+            <span className="text-sm text-blue-300">Diagnóstico Completo</span>
+          </div>
+          <h1 className="text-4xl sm:text-5xl font-black mb-4">
+            Sua presença digital
+            <br />
+            <span className="bg-gradient-to-r from-blue-400 to-blue-500 bg-clip-text text-transparent">foi analisada</span>
+          </h1>
+        </div>
+
         <DiagnosticScore result={result} />
 
         <motion.div
@@ -25,19 +38,21 @@ export function DiagnosticPageClient() {
           transition={{ delay: 1.2 }}
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
-          <Button
+          <button
             onClick={reset}
-            variant="outline"
-            className="px-8 py-4 border-[#333] text-gray-300 hover:text-white hover:bg-[#1a1a1a] transition"
+            className="px-8 py-4 rounded-xl border border-blue-500/50 text-white font-bold hover:bg-blue-500/10 hover:border-blue-400 transition duration-300 backdrop-blur-sm"
           >
             ← Fazer Novo Diagnóstico
-          </Button>
+          </button>
 
           <a
             href="/planos"
-            className="px-8 py-4 bg-[#10b981] text-white font-semibold rounded-lg hover:bg-[#10b981]/90 transition shadow-lg text-center"
+            className="group relative px-8 py-4 rounded-xl bg-gradient-to-r from-blue-600 to-blue-500 text-white font-bold hover:shadow-2xl hover:shadow-blue-500/50 transition duration-300 flex items-center justify-center gap-2 overflow-hidden"
           >
-            Ver Planos Premium →
+            <span className="relative z-10 flex items-center gap-2">
+              Ver Planos Premium
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition" />
+            </span>
           </a>
         </motion.div>
 
@@ -46,11 +61,22 @@ export function DiagnosticPageClient() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.3 }}
-          className="bg-blue-500/10 border border-blue-500/30 rounded-lg p-6"
+          className="relative group mt-12"
         >
-          <p className="text-blue-300 text-sm">
-            <span className="font-semibold">Próximo Passo:</span> Acesse o painel para ver análises detalhadas, acompanhar evolução e receber recomendações dos nossos agentes de IA.
-          </p>
+          <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 to-blue-500/20 rounded-2xl opacity-0 group-hover:opacity-100 blur-xl transition duration-300"></div>
+          <div className="relative bg-blue-500/5 border border-blue-500/30 rounded-2xl p-8 backdrop-blur-sm group-hover:border-blue-500/50 transition duration-300">
+            <div className="flex gap-4">
+              <Sparkles className="w-6 h-6 text-blue-400 flex-shrink-0 mt-1" />
+              <div>
+                <p className="text-blue-300 font-semibold mb-2">
+                  Próximo Passo: Vire Membro Premium
+                </p>
+                <p className="text-gray-300">
+                  Acesse seu painel completo com análises detalhadas em tempo real, acompanhe a evolução de suas redes e receba recomendações personalizadas dos nossos 10 agentes de IA especializados.
+                </p>
+              </div>
+            </div>
+          </div>
         </motion.div>
       </motion.div>
     )
@@ -62,7 +88,15 @@ export function DiagnosticPageClient() {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      <DiagnosticForm />
+      <div className="mb-8 text-center">
+        <h1 className="text-4xl sm:text-5xl font-black mb-4">
+          Diagnóstico Gratuito
+        </h1>
+        <p className="text-xl text-gray-400">
+          Analise sua presença digital em tempo real. Sem compromisso, sem cartão de crédito.
+        </p>
+      </div>
+      <DiagnosticForm loading={loading} error={error} analyze={analyze} />
     </motion.div>
   )
 }

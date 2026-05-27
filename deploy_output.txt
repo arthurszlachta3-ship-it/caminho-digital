@@ -1,0 +1,28 @@
+<claude-code-hint v="1" type="plugin" value="vercel@claude-plugins-official" />
+
+  Set up "~\Desktop\caminho digital novo"
+Loading teams…
+Searching for existing projects…
+  Local settings detected in vercel.json:
+  Build Command: npm run build
+  Framework: nextjs
+  Merging default Project Settings for Next.js. Previously listed overrides are prioritized.
+  Detected Next.js (Build Command: next build, Output Directory: Next.js default)
+  Linked      arthurszlachta3-ship-its-projects/caminho-digital
+> Connecting GitHub repository: https://github.com/arthurszlachta3-ship-it/caminho-digital
+Error: Failed to connect arthurszlachta3-ship-it/caminho-digital to project. Make sure there aren't any typos and that you have access to the repository if it's private.
+The `name` property in vercel.json is deprecated (https://vercel.link/name-prop)
+Deploying arthurszlachta3-ship-its-projects/caminho-digital
+{
+  "status": "error",
+  "reason": "deploy_failed",
+  "message": "Hobby accounts are limited to daily cron jobs. This cron expression (0 * * * *) would run more than once per day. Upgrade to the Pro plan to unlock all Cron Jobs features on Vercel.",
+  "next": [
+    {
+      "command": "vercel deploy",
+      "when": "retry deploy"
+    }
+  ]
+}
+Error: Hobby accounts are limited to daily cron jobs. This cron expression (0 * * * *) would run more than once per day. Upgrade to the Pro plan to unlock all Cron Jobs features on Vercel.
+Learn More: https://vercel.link/3Fpeeb1

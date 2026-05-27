@@ -1,0 +1,21 @@
+
+> caminho-digital@1.0.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+  - Environments: .env.local
+
+ ✓ Starting...
+ ⚠ Invalid next.config.js options detected: 
+ ⚠     Expected object, received boolean at "experimental.serverActions"
+ ⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+ ⚠ Server Actions are available by default now, `experimental.serverActions` option can be safely removed.
+ ✓ Ready in 4.5s
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 1473ms (72 modules)
+ ○ Compiling / ...
+ ✓ Compiled / in 10.3s (501 modules)
+ GET / 200 in 11323ms
+ ✓ Compiled in 1278ms (254 modules)
+ ✓ Compiled in 284ms (240 modules)

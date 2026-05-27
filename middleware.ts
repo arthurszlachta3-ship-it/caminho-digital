@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from 'next/server'
  *
  * Handles:
  * - Force HTTPS in production
- * - Redirect www to non-www
+ * - Redirect non-www to www (SSL certificate provisioned for www)
  * - Security headers
  * - CORS validation
  */
@@ -25,19 +25,18 @@ export function middleware(request: NextRequest) {
       )
     }
 
-    // Redirect www to non-www
-    if (hostname.startsWith('www.')) {
-      const canonicalHost = hostname.replace('www.', '')
+    // Redirect non-www to www (SSL certificate provisioned for www variant)
+    if (hostname === 'turbinesuasredes.com.br') {
       return NextResponse.redirect(
-        `https://${canonicalHost}${pathname}${searchParams}`,
+        `https://www.turbinesuasredes.com.br${pathname}${searchParams}`,
         { status: 301 }
       )
     }
 
-    // Ensure canonical domain
-    if (hostname !== 'turbinesuasredes.com.br') {
+    // Ensure canonical domain (www variant where SSL cert exists)
+    if (hostname !== 'www.turbinesuasredes.com.br') {
       return NextResponse.redirect(
-        `https://turbinesuasredes.com.br${pathname}${searchParams}`,
+        `https://www.turbinesuasredes.com.br${pathname}${searchParams}`,
         { status: 301 }
       )
     }

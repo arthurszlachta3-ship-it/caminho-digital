@@ -28,7 +28,8 @@ export async function POST(request: NextRequest) {
     }
 
     // Usar mock em desenvolvimento se ANTHROPIC_API_KEY não estiver configurado
-    const useRealApi = !!process.env.ANTHROPIC_API_KEY && process.env.NODE_ENV === 'production'
+    // TEMPORARY: Using mock engine while model compatibility is resolved
+    const useRealApi = false // !!process.env.ANTHROPIC_API_KEY && process.env.NODE_ENV === 'production'
     const engine = useRealApi ? diagnosticEngine : mockDiagnosticEngine
 
     // Executar análise

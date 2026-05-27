@@ -42,7 +42,7 @@ export interface DiagnosticResult {
 
 class DiagnosticEngine {
   private client: Anthropic | null = null
-  private model = 'claude-3-5-sonnet-20241022'
+  private model = 'claude-3-opus-20250219'
 
   private getClient(): Anthropic {
     if (!this.client) {
