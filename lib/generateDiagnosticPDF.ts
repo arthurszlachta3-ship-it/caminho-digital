@@ -78,7 +78,7 @@ export async function generateDiagnosticPDF(result: DiagnosticResult): Promise<v
       <h3 style="color: #1e40af; margin: 40px 0 20px 0; font-size: 22px; border-bottom: 2px solid #3b82f6; padding-bottom: 10px;">Análise por Canal</h3>
       ${Object.entries(result.channels)
         .map(
-          ([key, channel]) => `
+          ([_key, channel]) => `
         <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 20px; margin-bottom: 15px;">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
             <h4 style="margin: 0; color: #1e40af; font-size: 18px;">
@@ -140,7 +140,7 @@ export async function generateDiagnosticPDF(result: DiagnosticResult): Promise<v
         ${result.topPriorities
           .slice(0, 2)
           .map(
-            (priority, idx) => `
+            (priority) => `
           <li style="margin-bottom: 12px; color: #333; line-height: 1.6;">
             <strong style="color: #1e40af;">${priority}</strong>
           </li>
