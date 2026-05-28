@@ -6,28 +6,48 @@ declare global {
   }
 }
 
-async function loadHTML2PDF() {
+async function loadHTML2PDF(): Promise<void> {
   return new Promise((resolve, reject) => {
+    // Se já está carregado, resolve imediatamente
+    if (window.html2pdf) {
+      resolve()
+      return
+    }
+
     const script = document.createElement('script')
     script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js'
-    script.onload = () => resolve(true)
-    script.onerror = () => reject(new Error('Failed to load html2pdf'))
+    script.async = true
+    script.onload = () => {
+      // Aguarda um pouco para garantir que o objeto está disponível
+      setTimeout(() => resolve(), 100)
+    }
+    script.onerror = () => reject(new Error('Falha ao carregar html2pdf'))
     document.head.appendChild(script)
   })
 }
 
-export async function generateDiagnosticPDF(result: DiagnosticResult) {
-  // Aguardar pelo script global se necessário
-  if (!window.html2pdf) {
-    // Carregar script via CDN se não estiver disponível
-    await loadHTML2PDF()
-  }
+export async function generateDiagnosticPDF(result: DiagnosticResult): Promise<void> {
+  try {
+    // Carregar html2pdf se necessário
+    if (typeof window !== 'undefined' && !window.html2pdf) {
+      await loadHTML2PDF()
+    }
 
-  const html2pdf = window.html2pdf.html2pdf || window.html2pdf
+    // Verificar se html2pdf está disponível
+    if (!window?.html2pdf) {
+      throw new Error('Biblioteca html2pdf não foi carregada. Tente novamente.')
+    }
 
-  // Criar elemento HTML com os dados do diagnóstico
-  const element = document.createElement('div')
-  element.innerHTML = `
+    // Obter a função html2pdf (pode estar em window.html2pdf ou window.html2pdf.html2pdf)
+    const html2pdfLib = window.html2pdf?.html2pdf || window.html2pdf
+
+    if (typeof html2pdfLib !== 'function') {
+      throw new Error('html2pdf não é uma função válida')
+    }
+
+    // Criar elemento HTML com os dados do diagnóstico
+    const element = document.createElement('div')
+    element.innerHTML = `
     <div style="font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 40px; color: #333;">
       <!-- Header -->
       <div style="text-align: center; margin-bottom: 40px; border-bottom: 3px solid #3b82f6; padding-bottom: 30px;">
@@ -149,15 +169,19 @@ export async function generateDiagnosticPDF(result: DiagnosticResult) {
     </div>
   `
 
-  // Configurações do PDF
-  const options = {
-    margin: [10, 10, 10, 10],
-    filename: `diagnostico_${result.businessName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`,
-    image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
-  }
+    // Configurações do PDF
+    const options = {
+      margin: [10, 10, 10, 10],
+      filename: `diagnostico_${result.businessName.replace(/\s+/g, '_')}_${new Date().toISOString().split('T')[0]}.pdf`,
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { orientation: 'portrait', unit: 'mm', format: 'a4' }
+    }
 
-  // Gerar e fazer download do PDF
-  html2pdf().set(options).from(element).save()
+    // Gerar e fazer download do PDF
+    html2pdfLib().set(options).from(element).save()
+  } catch (error) {
+    console.error('Erro ao gerar PDF:', error)
+    alert(`Erro ao gerar PDF: ${error instanceof Error ? error.message : 'Tente novamente'}`)
+  }
 }
