@@ -245,7 +245,13 @@ export function DiagnosticScore({ result }: DiagnosticScoreProps) {
         className="flex justify-center mb-12"
       >
         <motion.button
-          onClick={() => generateDiagnosticPDF(result)}
+          onClick={async () => {
+            try {
+              await generateDiagnosticPDF(result)
+            } catch (error) {
+              console.error('Download error:', error)
+            }
+          }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-blue-500/50 text-blue-300 font-semibold rounded-xl hover:bg-blue-500/10 transition-all"
