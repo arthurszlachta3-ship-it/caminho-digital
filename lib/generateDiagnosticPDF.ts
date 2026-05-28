@@ -1,8 +1,29 @@
 import { DiagnosticResult } from './diagnostic-engine'
 
+declare global {
+  interface Window {
+    html2pdf: any
+  }
+}
+
+async function loadHTML2PDF() {
+  return new Promise((resolve, reject) => {
+    const script = document.createElement('script')
+    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js'
+    script.onload = () => resolve(true)
+    script.onerror = () => reject(new Error('Failed to load html2pdf'))
+    document.head.appendChild(script)
+  })
+}
+
 export async function generateDiagnosticPDF(result: DiagnosticResult) {
-  // Dinamicamente carregar html2pdf quando necessário
-  const html2pdf = (await import('html2pdf.js')).default
+  // Aguardar pelo script global se necessário
+  if (!window.html2pdf) {
+    // Carregar script via CDN se não estiver disponível
+    await loadHTML2PDF()
+  }
+
+  const html2pdf = window.html2pdf.html2pdf || window.html2pdf
 
   // Criar elemento HTML com os dados do diagnóstico
   const element = document.createElement('div')
