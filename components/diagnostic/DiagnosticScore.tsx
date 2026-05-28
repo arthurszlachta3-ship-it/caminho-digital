@@ -1,5 +1,6 @@
 'use client'
 
+// Force Vercel rebuild - v2
 import { DiagnosticResult } from '@/lib/diagnostic-engine'
 import { generateDiagnosticPDF } from '@/lib/generateDiagnosticPDF'
 import { motion } from 'framer-motion'
