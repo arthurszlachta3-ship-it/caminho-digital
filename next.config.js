@@ -8,9 +8,6 @@ const nextConfig = {
       'platform-lookaside.fbsbx.com',
       'avatars.githubusercontent.com'
     ]
-  },
-  experimental: {
-    serverActions: true
   }
 };
 
