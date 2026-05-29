@@ -176,13 +176,38 @@ export function DiagnosticScore({ result }: DiagnosticScoreProps) {
                   </div>
                 </div>
 
-                {/* Quick Win */}
-                <div className="bg-blue-500/10 rounded-xl p-4 border border-blue-500/30">
-                  <p className="flex items-center gap-2 text-xs text-blue-300 mb-2 font-semibold">
-                    <Zap className="w-3 h-3" />
-                    Oportunidade
-                  </p>
-                  <p className="text-sm text-gray-300">{channel.quickWin}</p>
+                {/* Problems & Quick Win */}
+                <div className="space-y-3">
+                  {/* Quick Win */}
+                  <div className="bg-blue-500/10 rounded-xl p-4 border border-blue-500/30">
+                    <p className="flex items-center gap-2 text-xs text-blue-300 mb-2 font-semibold">
+                      <Zap className="w-3 h-3" />
+                      Quick Win
+                    </p>
+                    <p className="text-sm text-gray-300">{channel.quickWin}</p>
+                  </div>
+
+                  {/* All Problems */}
+                  {channel.problems.length > 0 && (
+                    <div className="bg-slate-800/50 rounded-xl p-4 border border-slate-600/50">
+                      <p className="text-xs text-gray-400 mb-3 font-semibold">Problemas Identificados:</p>
+                      <div className="space-y-2">
+                        {channel.problems.map((problem, pIdx) => {
+                          const impactIcon = problem.impact === 'high' ? '🔴' : problem.impact === 'medium' ? '🟡' : '🟢'
+                          return (
+                            <div key={pIdx} className="text-sm">
+                              <div className="flex items-start gap-2 mb-1">
+                                <span>{impactIcon}</span>
+                                <span className="font-semibold text-gray-200">{problem.title}</span>
+                              </div>
+                              <p className="text-gray-400 ml-6 text-xs mb-1">{problem.description}</p>
+                              <p className="text-blue-300 ml-6 text-xs italic">↪ {problem.solution}</p>
+                            </div>
+                          )
+                        })}
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </motion.div>
@@ -190,38 +215,53 @@ export function DiagnosticScore({ result }: DiagnosticScoreProps) {
         </div>
       </motion.div>
 
-      {/* Top Priorities - Premium (LIMITED PREVIEW) */}
+      {/* Top Priorities - COMPLETE PLAN */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 1.6 }}
-        className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 border border-slate-700/50 mb-8 relative"
+        className="bg-gradient-to-br from-slate-900 to-slate-800 rounded-2xl p-8 border border-slate-700/50 mb-8"
       >
-        <div className="absolute top-0 right-0 px-3 py-1 bg-orange-500/20 border border-orange-500/50 rounded-bl-2xl rounded-tr-2xl text-xs font-semibold text-orange-300">
-          PREVIEW
-        </div>
         <h3 className="text-2xl font-bold text-white mb-8 flex items-center gap-3">
           <Target className="w-6 h-6 text-orange-400" />
-          Plano de Ação (primeiros passos)
+          Plano de Ação ({result.topPriorities.length} ações)
         </h3>
         <ul className="space-y-4">
-          {result.topPriorities.slice(0, 2).map((priority, idx) => (
-            <motion.li
-              key={idx}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 1.7 + idx * 0.1 }}
-              className="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition-colors group"
-            >
-              <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-red-500 text-white font-bold flex items-center justify-center">
-                {idx + 1}
-              </span>
-              <span className="text-gray-300 group-hover:text-gray-100 transition">{priority}</span>
-            </motion.li>
-          ))}
-          <li className="flex items-center justify-center p-4 rounded-lg bg-slate-800/30 border border-dashed border-slate-600">
-            <span className="text-gray-400 text-sm">+ {result.topPriorities.length - 2} ações premium...</span>
-          </li>
+          {result.topPriorities.map((priority, idx) => {
+            const difficultyIcon = priority.difficulty === 'easy' ? '🟢' : priority.difficulty === 'medium' ? '🟡' : '🔴'
+            return (
+              <motion.li
+                key={idx}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 1.7 + idx * 0.08 }}
+                className="flex items-start gap-4 p-4 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition-colors group"
+              >
+                <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-red-500 text-white font-bold flex items-center justify-center text-sm">
+                  {idx + 1}
+                </span>
+                <div className="flex-grow">
+                  <p className="text-gray-100 font-semibold mb-2">{priority.action}</p>
+                  <div className="flex flex-wrap gap-3 items-center text-sm">
+                    <span className="text-gray-400">
+                      {difficultyIcon} {priority.difficulty.charAt(0).toUpperCase() + priority.difficulty.slice(1)}
+                    </span>
+                    <span className="text-gray-400 flex items-center gap-1">
+                      ⏱️ {priority.timeToImplement}
+                    </span>
+                    <span className="text-green-400 font-semibold">
+                      {priority.potentialROI}
+                    </span>
+                    {priority.channel && (
+                      <span className="text-blue-300 text-xs bg-blue-500/20 px-2 py-1 rounded">
+                        {priority.channel}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </motion.li>
+            )
+          })}
         </ul>
       </motion.div>
 
