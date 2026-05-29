@@ -67,8 +67,6 @@ export async function orchestrateDataCollection(
   youtubeHandle?: string,
   websiteUrl?: string
 ): Promise<RealAuditData> {
-  const collectionStart = Date.now()
-
   // Coletar dados de forma paralela
   const [instagramResult, tiktokResult, youtubeResult, websiteResult] = await Promise.all([
     instagramHandle ? collectInstagramData(instagramHandle) : Promise.resolve(null),

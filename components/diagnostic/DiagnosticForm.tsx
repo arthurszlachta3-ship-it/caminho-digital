@@ -1,29 +1,32 @@
 'use client'
 
 import { useState } from 'react'
-import { DiagnosticInput } from '@/lib/diagnostic-engine'
 import { motion } from 'framer-motion'
 import { Zap } from 'lucide-react'
+
+interface DiagnosticFormData {
+  businessName: string
+  businessType: string
+  instagramHandle?: string
+  tiktokHandle?: string
+  youtubeHandle?: string
+  websiteUrl?: string
+}
 
 interface DiagnosticFormProps {
   loading: boolean
   error: string | null
-  analyze: (input: DiagnosticInput) => Promise<any>
+  onAnalyze: (data: DiagnosticFormData) => Promise<void>
 }
 
-export function DiagnosticForm({ loading, error, analyze }: DiagnosticFormProps) {
-  const [formData, setFormData] = useState<DiagnosticInput>({
+export function DiagnosticForm({ loading, error, onAnalyze }: DiagnosticFormProps) {
+  const [formData, setFormData] = useState<DiagnosticFormData>({
     businessName: '',
     businessType: '',
-    instagram: '',
-    tiktok: '',
-    youtube: '',
-    website: '',
-    currentFollowers: {
-      instagram: 0,
-      tiktok: 0,
-      youtube: 0
-    }
+    instagramHandle: '',
+    tiktokHandle: '',
+    youtubeHandle: '',
+    websiteUrl: ''
   })
 
   const [validationError, setValidationError] = useState<string>('')
@@ -31,7 +34,6 @@ export function DiagnosticForm({ loading, error, analyze }: DiagnosticFormProps)
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target
     setValidationError('')
-
     setFormData(prev => ({
       ...prev,
       [name]: value
@@ -53,8 +55,19 @@ export function DiagnosticForm({ loading, error, analyze }: DiagnosticFormProps)
       return
     }
 
+    // Verificar se ao menos um canal foi fornecido
+    const hasAtLeastOneChannel = formData.instagramHandle?.trim() ||
+                                 formData.tiktokHandle?.trim() ||
+                                 formData.youtubeHandle?.trim() ||
+                                 formData.websiteUrl?.trim()
+
+    if (!hasAtLeastOneChannel) {
+      setValidationError('Forneça pelo menos um canal ou website')
+      return
+    }
+
     try {
-      await analyze(formData)
+      await onAnalyze(formData)
     } catch (err) {
       setValidationError('Erro ao processar diagnóstico. Tente novamente.')
     }
@@ -66,15 +79,15 @@ export function DiagnosticForm({ loading, error, analyze }: DiagnosticFormProps)
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full max-w-2xl mx-auto space-y-6 bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-xl p-8 border border-[#222]"
+      className="w-full max-w-xl mx-auto space-y-5 bg-gradient-to-br from-[#1a1a1a] to-[#0f0f0f] rounded-xl p-6 border border-[#222]"
     >
-      {/* Header */}
+      {/* Header - Minimalista */}
       <div>
-        <h2 className="text-3xl font-bold text-white mb-2">
-          Análise de Presença Digital
+        <h2 className="text-2xl font-bold text-white mb-1">
+          Diagnóstico Digital Gratuito
         </h2>
-        <p className="text-gray-400">
-          Preencha os dados da sua empresa para receber um diagnóstico completo
+        <p className="text-sm text-gray-400">
+          Preencha os dados essenciais para análise IA
         </p>
       </div>
 
@@ -83,20 +96,18 @@ export function DiagnosticForm({ loading, error, analyze }: DiagnosticFormProps)
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="bg-red-500/10 border border-red-500/50 rounded-lg p-4"
+          className="bg-red-500/10 border border-red-500/50 rounded-lg p-3"
         >
-          <p className="text-red-400 text-sm">
+          <p className="text-red-400 text-xs">
             {validationError || error}
           </p>
         </motion.div>
       )}
 
-      {/* Business Info Section */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-white">Informações da Empresa</h3>
-
+      {/* Business Info - Compacto */}
+      <div className="space-y-3">
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label className="block text-xs font-medium text-gray-300 mb-1">
             Nome da Empresa *
           </label>
           <input
@@ -105,23 +116,23 @@ export function DiagnosticForm({ loading, error, analyze }: DiagnosticFormProps)
             value={formData.businessName}
             onChange={handleChange}
             placeholder="Ex: Loja Premium"
-            className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#333] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]/50 transition"
+            className="w-full px-3 py-2 bg-[#0a0a0a] border border-[#333] rounded-lg text-sm text-white placeholder-gray-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]/50 transition"
             disabled={loading}
           />
         </div>
 
         <div>
-          <label className="block text-sm font-medium text-gray-300 mb-2">
+          <label className="block text-xs font-medium text-gray-300 mb-1">
             Tipo de Negócio *
           </label>
           <select
             name="businessType"
             value={formData.businessType}
             onChange={handleChange}
-            className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#333] rounded-lg text-white focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]/50 transition"
+            className="w-full px-3 py-2 bg-[#0a0a0a] border border-[#333] rounded-lg text-sm text-white focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]/50 transition"
             disabled={loading}
           >
-            <option value="">Selecione uma categoria</option>
+            <option value="">Selecione...</option>
             <option value="ecommerce">E-commerce</option>
             <option value="servicos">Serviços</option>
             <option value="varejo">Varejo</option>
@@ -134,82 +145,69 @@ export function DiagnosticForm({ loading, error, analyze }: DiagnosticFormProps)
         </div>
       </div>
 
-      {/* Social Media Section */}
-      <div className="space-y-4">
-        <h3 className="text-lg font-semibold text-white">Redes Sociais</h3>
+      {/* Social Channels - Grid compacto 2x2 */}
+      <div className="space-y-2">
+        <p className="text-xs font-medium text-gray-300">Canais Digitais (opcional)</p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-2">
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Instagram
-            </label>
             <input
               type="text"
-              name="instagram"
-              value={formData.instagram}
+              name="instagramHandle"
+              value={formData.instagramHandle}
               onChange={handleChange}
-              placeholder="@seuusuario"
-              className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#333] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]/50 transition"
+              placeholder="Instagram @user"
+              className="w-full px-3 py-2 bg-[#0a0a0a] border border-[#333] rounded-lg text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]/50 transition"
               disabled={loading}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              TikTok
-            </label>
             <input
               type="text"
-              name="tiktok"
-              value={formData.tiktok}
+              name="tiktokHandle"
+              value={formData.tiktokHandle}
               onChange={handleChange}
-              placeholder="@seuusuario"
-              className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#333] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]/50 transition"
+              placeholder="TikTok @user"
+              className="w-full px-3 py-2 bg-[#0a0a0a] border border-[#333] rounded-lg text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]/50 transition"
               disabled={loading}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              YouTube
-            </label>
             <input
               type="text"
-              name="youtube"
-              value={formData.youtube}
+              name="youtubeHandle"
+              value={formData.youtubeHandle}
               onChange={handleChange}
-              placeholder="@seucanal"
-              className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#333] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]/50 transition"
+              placeholder="YouTube @channel"
+              className="w-full px-3 py-2 bg-[#0a0a0a] border border-[#333] rounded-lg text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]/50 transition"
               disabled={loading}
             />
           </div>
 
           <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">
-              Website
-            </label>
             <input
               type="url"
-              name="website"
-              value={formData.website}
+              name="websiteUrl"
+              value={formData.websiteUrl}
               onChange={handleChange}
-              placeholder="https://seusite.com.br"
-              className="w-full px-4 py-3 bg-[#0a0a0a] border border-[#333] rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]/50 transition"
+              placeholder="Website URL"
+              className="w-full px-3 py-2 bg-[#0a0a0a] border border-[#333] rounded-lg text-xs text-white placeholder-gray-500 focus:outline-none focus:border-[#10b981] focus:ring-1 focus:ring-[#10b981]/50 transition"
               disabled={loading}
             />
           </div>
         </div>
       </div>
 
-
       {/* Submit Button */}
       <motion.button
         type="button"
         onClick={() => handleSubmit()}
         disabled={loading}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-        className="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold rounded-xl transition shadow-lg hover:shadow-blue-500/50 disabled:opacity-50"
+        whileHover={{ scale: loading ? 1 : 1.02 }}
+        whileTap={{ scale: loading ? 1 : 0.98 }}
+        className="w-full py-3 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400 text-white font-bold text-sm rounded-lg transition shadow-lg hover:shadow-blue-500/50 disabled:opacity-50"
       >
         {loading ? (
           <motion.span
@@ -222,20 +220,20 @@ export function DiagnosticForm({ loading, error, analyze }: DiagnosticFormProps)
               transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
               className="inline-block"
             >
-              <Zap className="w-5 h-5" />
+              <Zap className="w-4 h-4" />
             </motion.span>
-            Analisando sua presença digital com IA...
+            Analisando...
           </motion.span>
         ) : (
           <span className="flex items-center justify-center gap-2">
-            <Zap className="w-5 h-5" />
-            Gerar Diagnóstico Gratuito
+            <Zap className="w-4 h-4" />
+            Gerar Diagnóstico
           </span>
         )}
       </motion.button>
 
       <p className="text-xs text-gray-500 text-center">
-        * Campos obrigatórios
+        Forneça ao menos um canal para análise completa
       </p>
     </motion.form>
   )

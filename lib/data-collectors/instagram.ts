@@ -129,26 +129,6 @@ async function fetchFromRapidAPI(
 }
 
 /**
- * Scraping de dados públicos (último recurso)
- * APENAS dados já visíveis publicamente
- */
-async function scrapeInstagramPublic(
-  username: string
-): Promise<InstagramProfile | InstagramError> {
-  // Usar Puppeteer para coletar dados públicos
-  // const browser = await puppeteer.launch()
-  // const page = await browser.newPage()
-  // await page.goto(`https://instagram.com/${username}`)
-  // ...
-
-  return {
-    code: "INSTAGRAM_SCRAPING_DISABLED",
-    message: "Scraping desativado. Use API oficial.",
-    reason: "api_error",
-  }
-}
-
-/**
  * Calcula posts por semana baseado em histórico real
  */
 function calculatePostsPerWeek(posts: any[]): number | null {

@@ -60,7 +60,6 @@ export async function analyzeWebsite(
     // Verificar se site é acessível
     const headResponse = await fetch(url, {
       method: "HEAD",
-      timeout: 10000,
     }).catch(() => null)
 
     if (!headResponse || headResponse.status === 404) {
@@ -77,7 +76,6 @@ export async function analyzeWebsite(
         "User-Agent":
           "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36",
       },
-      timeout: 15000,
     })
 
     if (!pageResponse.ok) {
@@ -98,7 +96,7 @@ export async function analyzeWebsite(
     const mobileFriendly = html.includes("viewport") && html.includes("width=device-width")
     const keywords = extractKeywords(html)
     const headings = extractHeadings(html)
-    const socialLinks = extractSocialLinks(html, url)
+    const socialLinks = extractSocialLinks(html)
     const metaTags = extractOpenGraphTags(html)
     const hasHTTPS = url.startsWith("https://")
 
@@ -207,7 +205,7 @@ function extractHeadings(html: string): string[] {
 /**
  * Extrai links para redes sociais
  */
-function extractSocialLinks(html: string, baseUrl: string): WebsiteAnalysis["socialLinks"] {
+function extractSocialLinks(html: string): WebsiteAnalysis["socialLinks"] {
   const links: WebsiteAnalysis["socialLinks"] = {}
 
   const patterns: Record<keyof WebsiteAnalysis["socialLinks"], RegExp> = {

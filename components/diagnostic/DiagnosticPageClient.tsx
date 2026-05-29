@@ -96,7 +96,7 @@ export function DiagnosticPageClient() {
           Analise sua presença digital em tempo real. Sem compromisso, sem cartão de crédito.
         </p>
       </div>
-      <DiagnosticForm loading={loading} error={error} analyze={analyze} />
+      <DiagnosticForm loading={loading} error={error} onAnalyze={analyze} />
     </motion.div>
   )
 }
