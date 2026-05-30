@@ -208,7 +208,7 @@ class DiagnosticEngine {
       score,
       grade,
       problems,
-      quickWin: this.generateQuickWin(channel, score),
+      quickWin: this.generateQuickWin(channel),
       sentiment: this.gradeSentiment(grade)
     }
   }
@@ -310,7 +310,7 @@ class DiagnosticEngine {
     }
   }
 
-  private generateQuickWin(channel: Channel, score: number): string {
+  private generateQuickWin(channel: Channel): string {
     const quickWins: Record<Channel, string> = {
       instagram: 'Criar 5 posts com imagens profissionais esta semana',
       tiktok: 'Publicar um vídeo usando trending sound hoje',
