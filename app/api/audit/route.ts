@@ -75,6 +75,17 @@ export async function POST(request: Request): Promise<Response> {
 
     // Verificar se tem dados suficientes
     if (!auditData.dataQuality.hassufficientData) {
+      console.log(`[AUDIT] ❌ Dados insuficientes para ${body.businessName}:`, {
+        completeness: auditData.dataQuality.completenessScore,
+        warnings: auditData.dataQuality.warnings,
+        platforms: {
+          instagram: auditData.platforms.instagram.status,
+          tiktok: auditData.platforms.tiktok.status,
+          youtube: auditData.platforms.youtube.status,
+          website: auditData.platforms.website.status,
+        }
+      })
+
       return Response.json(
         {
           success: false,

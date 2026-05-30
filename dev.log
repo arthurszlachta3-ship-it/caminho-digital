@@ -7,31 +7,497 @@
   - Environments: .env.local
 
  ✓ Starting...
- ✓ Ready in 11s
- ○ Compiling /middleware ...
- ✓ Compiled /middleware in 2.3s (72 modules)
+ ✓ Ready in 6.7s
+ ✓ Compiled /middleware in 330ms (72 modules)
  ○ Compiling / ...
- ✓ Compiled / in 15.2s (1111 modules)
- ✓ Compiled in 2.2s (563 modules)
- GET / 200 in 17463ms
+ ✓ Compiled / in 5.6s (1111 modules)
+ GET / 200 in 6121ms
+ ✓ Compiled in 1194ms (563 modules)
  ○ Compiling /diagnostico ...
- ✓ Compiled /diagnostico in 1308ms (1122 modules)
- ○ Compiling /api/diagnostico ...
- ✓ Compiled /api/diagnostico in 1903ms (665 modules)
- POST /api/diagnostico 200 in 3597ms
+ ✓ Compiled /diagnostico in 1356ms (1122 modules)
+ GET /diagnostico 200 in 1630ms
+ ○ Compiling /api/audit ...
+ ✓ Compiled /api/audit in 1560ms (643 modules)
+[AUDIT] Iniciando coleta de dados para: Neymar Jr
+[INSTAGRAM] ✅ Usando dados de teste para @neymarjr
+[AUDIT] ❌ Dados insuficientes para Neymar Jr: {
+  completeness: 25,
+  warnings: [
+    'Dados do TikTok não disponíveis',
+    'Dados do YouTube não disponíveis',
+    'Website não foi analisado',
+    'Dados insuficientes para análise completa. Forneça pelo menos 2 canais sociais e/ou website.'
+  ],
+  platforms: {
+    instagram: 'success',
+    tiktok: 'error',
+    youtube: 'error',
+    website: 'error'
+  }
+}
+ POST /api/audit 400 in 1812ms
+ ✓ Compiled in 761ms (530 modules)
+ ⨯ TypeError: Cannot read properties of undefined (reading 'call')
+    at Object.t [as require] (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:1:143)
+    at JSON.parse (<anonymous>)
+digest: "2863523935"
+TypeError: Cannot read properties of undefined (reading 'call')
+    at Object.t [as require] (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:1:143)
+    at require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:17:18811)
+    at A (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94398)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:96726
+    at B._fromJSON (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:97164)
+    at JSON.parse (<anonymous>)
+    at I (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94119)
+    at t (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:100640)
+ ⨯ TypeError: Cannot read properties of undefined (reading 'call')
+    at Object.t [as require] (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:1:143)
+    at require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:17:18811)
+    at A (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94398)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:96726
+    at B._fromJSON (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:97164)
+    at JSON.parse (<anonymous>)
+    at I (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:94119)
+    at t (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\compiled\next-server\app-page.runtime.prod.js:12:100640) {
+  page: '/diagnostico'
+}
+ ○ Compiling /_error ...
+ GET /diagnostico 500 in 4382ms
+ ✓ Compiled /_error in 10.8s (1317 modules)
+ ✓ Compiled /api/audit in 425ms (651 modules)
+ ⨯ Error: Cannot find module './948.js'
+Require stack:
+- C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js
+- C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\build\utils.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\hot-middleware.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1476:15)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1049:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1073:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1094:12)
+    at Module._load (node:internal/modules/cjs/loader:1262:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1576:12)
+    at mod.require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:153:16)
+    at __webpack_require__.f.require (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:198:28)
+    at C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:162:22)
+    at C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js:78:1816
+    at Object.<anonymous> (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js:78:1861)
+    at Module._compile (node:internal/modules/cjs/loader:1830:14)
+    at Object..js (node:internal/modules/cjs/loader:1961:10)
+    at Module.load (node:internal/modules/cjs/loader:1553:32)
+    at Module._load (node:internal/modules/cjs/loader:1355:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1576:12)
+    at mod.require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:153:16)
+    at requirePage (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js:103:84
+    at async loadComponentsImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js:103:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\next-server.js:714:36)
+    at async DevServer.findPageComponents (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:1962:32)
+    at async DevServer.pipeImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:818:17)
+    at async C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:179:21)
+    at async handleRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:359:24)
+    at async requestHandlerImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:383:13)
+    at async Server.requestListener (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\.next\\server\\app\\api\\audit\\route.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\load-components.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\build\\utils.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\dev\\hot-middleware.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\dev\\hot-reloader-webpack.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ],
+  page: '/api/audit'
+}
+ POST /api/audit 500 in 538ms
+ ⨯ Error: Cannot find module './948.js'
+Require stack:
+- C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js
+- C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\build\utils.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\hot-middleware.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1476:15)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1049:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1073:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1094:12)
+    at Module._load (node:internal/modules/cjs/loader:1262:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1576:12)
+    at mod.require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:153:16)
+    at __webpack_require__.f.require (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:198:28)
+    at C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:162:22)
+    at C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js:78:1816
+    at Object.<anonymous> (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js:78:1861)
+    at Module._compile (node:internal/modules/cjs/loader:1830:14)
+    at Object..js (node:internal/modules/cjs/loader:1961:10)
+    at Module.load (node:internal/modules/cjs/loader:1553:32)
+    at Module._load (node:internal/modules/cjs/loader:1355:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1576:12)
+    at mod.require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:153:16)
+    at requirePage (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js:103:84
+    at async loadComponentsImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js:103:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\next-server.js:714:36)
+    at async DevServer.findPageComponents (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:1962:32)
+    at async DevServer.pipeImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:818:17)
+    at async C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:179:21)
+    at async handleRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:359:24)
+    at async requestHandlerImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:383:13)
+    at async Server.requestListener (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\.next\\server\\app\\api\\audit\\route.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\load-components.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\build\\utils.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\dev\\hot-middleware.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\dev\\hot-reloader-webpack.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ],
+  page: '/api/audit'
+}
+ POST /api/audit 500 in 38ms
+ ⨯ Error: Cannot find module './948.js'
+Require stack:
+- C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js
+- C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\build\utils.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\hot-middleware.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1476:15)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1049:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1073:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1094:12)
+    at Module._load (node:internal/modules/cjs/loader:1262:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1576:12)
+    at mod.require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:153:16)
+    at __webpack_require__.f.require (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:198:28)
+    at C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:162:22)
+    at C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js:78:1816
+    at Object.<anonymous> (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js:78:1861)
+    at Module._compile (node:internal/modules/cjs/loader:1830:14)
+    at Object..js (node:internal/modules/cjs/loader:1961:10)
+    at Module.load (node:internal/modules/cjs/loader:1553:32)
+    at Module._load (node:internal/modules/cjs/loader:1355:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1576:12)
+    at mod.require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:153:16)
+    at requirePage (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js:103:84
+    at async loadComponentsImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js:103:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\next-server.js:714:36)
+    at async DevServer.findPageComponents (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:1962:32)
+    at async DevServer.pipeImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:818:17)
+    at async C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:179:21)
+    at async handleRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:359:24)
+    at async requestHandlerImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:383:13)
+    at async Server.requestListener (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\.next\\server\\app\\api\\audit\\route.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\load-components.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\build\\utils.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\dev\\hot-middleware.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\dev\\hot-reloader-webpack.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ],
+  page: '/api/audit'
+}
+ POST /api/audit 500 in 34ms
  ○ Compiling /_not-found ...
- ✓ Compiled /_not-found in 1146ms (1139 modules)
- GET /login 404 in 1617ms
- GET /diagnostico 200 in 216ms
- ✓ Compiled in 3.2s (1208 modules)
- ✓ Compiled in 3.2s (1136 modules)
- ✓ Compiled in 2.8s (1136 modules)
- ✓ Compiled in 1890ms (1122 modules)
- ✓ Compiled in 2.6s (1136 modules)
- ✓ Compiled in 757ms (1122 modules)
- ✓ Compiled in 429ms (1122 modules)
- ✓ Compiled in 3.1s (1122 modules)
- ✓ Compiled in 1554ms (1122 modules)
- ✓ Compiled in 901ms (1122 modules)
- ✓ Compiled in 434ms (1122 modules)
- ✓ Compiled in 4.7s (1122 modules)
+ ✓ Compiled /_not-found in 1704ms (1400 modules)
+ GET /diagnostico 404 in 2130ms
+ GET /_next/static/css/app/layout.css?v=1780112622190 404 in 205ms
+ GET /_next/static/chunks/main-app.js?v=1780112622190 404 in 264ms
+ GET /_next/static/chunks/app-pages-internals.js 404 in 255ms
+ ⨯ Error: Cannot find module './948.js'
+Require stack:
+- C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js
+- C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\_not-found\page.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\build\utils.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\hot-middleware.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1476:15)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1049:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1073:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1094:12)
+    at Module._load (node:internal/modules/cjs/loader:1262:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1576:12)
+    at mod.require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:153:16)
+    at __webpack_require__.f.require (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:198:28)
+    at C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:162:22)
+    at C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js:78:1816
+    at Object.<anonymous> (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js:78:1861)
+    at Module._compile (node:internal/modules/cjs/loader:1830:14)
+    at Object..js (node:internal/modules/cjs/loader:1961:10)
+    at Module.load (node:internal/modules/cjs/loader:1553:32)
+    at Module._load (node:internal/modules/cjs/loader:1355:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1576:12)
+    at mod.require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:153:16)
+    at requirePage (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js:103:84
+    at async loadComponentsImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js:103:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\next-server.js:714:36)
+    at async DevServer.findPageComponents (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:1962:32)
+    at async DevServer.pipeImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:818:17)
+    at async C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:179:21)
+    at async handleRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:359:24)
+    at async requestHandlerImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:383:13)
+    at async Server.requestListener (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\.next\\server\\app\\_not-found\\page.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\load-components.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\build\\utils.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\dev\\hot-middleware.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\dev\\hot-reloader-webpack.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ],
+  page: '/api/audit'
+}
+ POST /api/audit 500 in 99ms
+ ⨯ Error: Cannot find module './948.js'
+Require stack:
+- C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js
+- C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\_not-found\page.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\build\utils.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\hot-middleware.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1476:15)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1049:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1073:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1094:12)
+    at Module._load (node:internal/modules/cjs/loader:1262:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1576:12)
+    at mod.require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:153:16)
+    at __webpack_require__.f.require (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:198:28)
+    at C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:162:22)
+    at C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js:78:1816
+    at Object.<anonymous> (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js:78:1861)
+    at Module._compile (node:internal/modules/cjs/loader:1830:14)
+    at Object..js (node:internal/modules/cjs/loader:1961:10)
+    at Module.load (node:internal/modules/cjs/loader:1553:32)
+    at Module._load (node:internal/modules/cjs/loader:1355:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1576:12)
+    at mod.require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:153:16)
+    at requirePage (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js:103:84
+    at async loadComponentsImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js:103:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\next-server.js:714:36)
+    at async DevServer.findPageComponents (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:1962:32)
+    at async DevServer.pipeImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:818:17)
+    at async C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:179:21)
+    at async handleRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:359:24)
+    at async requestHandlerImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:383:13)
+    at async Server.requestListener (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\.next\\server\\app\\_not-found\\page.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\load-components.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\build\\utils.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\dev\\hot-middleware.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\dev\\hot-reloader-webpack.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ],
+  page: '/api/audit'
+}
+ POST /api/audit 500 in 83ms
+ ⨯ Error: Cannot find module './948.js'
+Require stack:
+- C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js
+- C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\_not-found\page.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\build\utils.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\hot-middleware.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\hot-reloader-webpack.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-utils\setup-dev-bundler.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js
+- C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\start-server.js
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1476:15)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:55:36
+    at wrapResolveFilename (node:internal/modules/cjs/loader:1049:27)
+    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1073:10)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1094:12)
+    at Module._load (node:internal/modules/cjs/loader:1262:25)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1576:12)
+    at mod.require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:153:16)
+    at __webpack_require__.f.require (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:198:28)
+    at C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:111:40
+    at Array.reduce (<anonymous>)
+    at __webpack_require__.e (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:110:67)
+    at Array.map (<anonymous>)
+    at __webpack_require__.X (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\webpack-runtime.js:162:22)
+    at C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js:78:1816
+    at Object.<anonymous> (C:\Users\Arthur\Desktop\caminho digital novo\.next\server\app\api\audit\route.js:78:1861)
+    at Module._compile (node:internal/modules/cjs/loader:1830:14)
+    at Object..js (node:internal/modules/cjs/loader:1961:10)
+    at Module.load (node:internal/modules/cjs/loader:1553:32)
+    at Module._load (node:internal/modules/cjs/loader:1355:12)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)
+    at Module.<anonymous> (node:internal/modules/cjs/loader:1576:12)
+    at mod.require (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require-hook.js:65:28)
+    at require (node:internal/modules/helpers:153:16)
+    at requirePage (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\require.js:109:84)
+    at C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js:103:84
+    at async loadComponentsImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\load-components.js:103:26)
+    at async DevServer.findPageComponentsImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\next-server.js:714:36)
+    at async DevServer.findPageComponents (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:577:20)
+    at async DevServer.renderPageComponent (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:1910:24)
+    at async DevServer.renderToResponseImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:1962:32)
+    at async DevServer.pipeImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:922:25)
+    at async NextNodeServer.handleCatchallRenderRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\next-server.js:272:17)
+    at async DevServer.handleRequestImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\base-server.js:818:17)
+    at async C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:339:20
+    at async Span.traceAsyncFn (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\trace\trace.js:154:20)
+    at async DevServer.handleRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\dev\next-dev-server.js:336:24)
+    at async invokeRender (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:179:21)
+    at async handleRequest (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:359:24)
+    at async requestHandlerImpl (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\router-server.js:383:13)
+    at async Server.requestListener (C:\Users\Arthur\Desktop\caminho digital novo\node_modules\next\dist\server\lib\start-server.js:141:13) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\.next\\server\\webpack-runtime.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\.next\\server\\app\\_not-found\\page.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\require.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\load-components.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\build\\utils.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\dev\\hot-middleware.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\dev\\hot-reloader-webpack.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\router-utils\\setup-dev-bundler.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\router-server.js',
+    'C:\\Users\\Arthur\\Desktop\\caminho digital novo\\node_modules\\next\\dist\\server\\lib\\start-server.js'
+  ],
+  page: '/api/audit'
+}
+ POST /api/audit 500 in 41ms
+ ✓ Compiled in 497ms (570 modules)
+ ✓ Compiled in 1616ms (759 modules)
+ ✓ Compiled in 790ms (759 modules)
+ ✓ Compiled in 207ms (759 modules)

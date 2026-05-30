@@ -190,58 +190,94 @@ function calculateDataQuality(result: RealAuditData): RealAuditData["dataQuality
 
 /**
  * Cria prompt para Claude com dados REAIS
- * Claude NÃO pode inventar dados
+ * Claude NÃO pode inventar dados - PROIBIDO CATEGORICAMENTE
  */
 export function buildClaudePromptFromRealData(auditData: RealAuditData): string {
   const platformsSummary = Object.entries(auditData.platforms)
     .map(([platform, result]) => {
       if (result.status === "error") {
-        return `${platform}: Erro - ${result.error?.message}`
+        return `❌ ${platform.toUpperCase()}: Erro - ${result.error?.message}`
       }
-      return `${platform}: Dados coletados com sucesso`
+      return `✅ ${platform.toUpperCase()}: Dados coletados`
     })
     .join("\n")
 
-  return `## AUDITORIA DIGITAL REAL - ${auditData.businessName.toUpperCase()}
+  return `# ⚠️ AUDITORIA DIGITAL - DADOS REAIS SOMENTE ⚠️
 
-IMPORTANTE: Use SOMENTE os dados fornecidos abaixo.
-Se um dado estiver ausente ou indisponível:
-- NÃO invente informações
-- Diga claramente: "Dado não disponível"
-- Sugira coleta adicional se necessário
+## RESTRIÇÃO ABSOLUTA: NÃO INVENTE NENHUM DADO
 
-### Dados Coletados
-Timestamp: ${auditData.collectedAt}
-Tipo de Negócio: ${auditData.businessType}
+Você está analisando dados reais de ${auditData.businessName}. Você recebe dados estruturados abaixo.
 
-Plataformas:
+**SE A INFORMAÇÃO NÃO ESTIVER NOS DADOS: VOCÊ NÃO PODE INVENTAR**
+
+Exemplos de INVENÇÃO (PROIBIDO):
+❌ "O perfil tem 5.000 seguidores" (se ninguém forneceu esse número)
+❌ "Fez 10 posts no mês passado" (se o dado não foi coletado)
+❌ "O engajamento é baixo" (sem dados de engajamento)
+❌ "Recomendo fazer X" (sem evidência nos dados para fazer X)
+
+---
+
+## Plataformas Coletadas
 ${platformsSummary}
 
-Qualidade dos Dados:
+## Qualidade dos Dados
 - Completude: ${auditData.dataQuality.completenessScore}%
-- Dados Suficientes: ${auditData.dataQuality.hassufficientData ? "Sim" : "Não"}
+- Suficientes: ${auditData.dataQuality.hassufficientData ? "✅ Sim" : "❌ Não"}
 - Avisos: ${auditData.dataQuality.warnings.length > 0 ? auditData.dataQuality.warnings.join("; ") : "Nenhum"}
 
-### Dados Brutos
+---
+
+## Dados Estruturados (FONTE ABSOLUTA)
 \`\`\`json
 ${JSON.stringify(auditData, null, 2)}
 \`\`\`
 
-### Sua Análise
-Com base SOMENTE nos dados reais acima:
+---
 
-1. **Análise por Canal**: Descreva o que você VÊ nos dados. NÃO suponha ou invente.
+## Sua Tarefa - SOMENTE COM DADOS REAIS
 
-2. **Pontos Fortes**: Liste apenas fatos observáveis nos dados.
+Analise APENAS o que está nos dados. Para cada seção:
 
-3. **Oportunidades**: Sugira melhorias baseadas em dados reais.
+1. **Análise por Canal**
+   - Liste SOMENTE o que você VÊ nos dados
+   - Se um canal tem erro: diga "Canal não configurado"
+   - Não suponha números, atividade ou problemas
 
-4. **Score Estratégico**: Calcule um score 0-100 baseado APENAS nos dados coletados.
+2. **Pontos Fortes**
+   - SOMENTE fatos observáveis nos dados
+   - Se não há dados: escreva "Sem dados para avaliar"
 
-5. **Próximos Passos**: Recomende ações específicas suportadas pelos dados.
+3. **Oportunidades**
+   - Baseadas APENAS no que você ve nos dados
+   - Não sugira ações sem base factual
 
-### Regra Ouro
-Se a informação não está nos dados:
-❌ NÃO invente
-✅ Diga "Dado não disponível" ou "Informação insuficiente para análise"`
+4. **Score Estratégico**
+   - Calcule baseado SOMENTE nos dados (ex: completenessScore)
+   - Não invente um score "artístico"
+
+5. **Próximos Passos**
+   - Recomendações suportadas pelos dados
+   - Não adicione recomendações genéricas
+
+---
+
+## PROIBIÇÕES ABSOLUTAS
+
+❌ NÃO diga "tem X seguidores" se ninguém coletou esse dado
+❌ NÃO diga "posted 3x por semana" sem dados de posts
+❌ NÃO invente problemas que não apareçem nos dados
+❌ NÃO adicione análises criativas ou suposições
+❌ NÃO faça perguntas retóricas que criem ilusão de dados
+
+## MANDATÓRIA
+
+✅ Se um canal retornou erro: reporte claramente
+✅ Se faltam dados: diga "Informação não coletada"
+✅ Seja específico: cite os números que você realmente vê
+✅ Seja humilde: reconheça limitações dos dados
+
+---
+
+**Comece agora. Analise SOMENTE com os dados reais acima.**`
 }

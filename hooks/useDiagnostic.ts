@@ -72,7 +72,19 @@ export function useDiagnostic() {
 
       if (!response.ok) {
         const errorData = await response.json()
-        throw new Error(errorData.error?.message || 'Erro ao processar diagnóstico')
+        const errorMsg = errorData.error?.message || 'Erro ao processar diagnóstico'
+
+        // Melhorar mensagem de erro para dados insuficientes
+        if (errorData.error?.code === 'INSUFFICIENT_DATA') {
+          console.log('[AUDIT] Dados insuficientes:', errorData.dataQuality)
+          throw new Error(
+            `❌ Dados insuficientes para análise. ${errorMsg}\n\n` +
+            `Plataformas coletadas: ${errorData.dataQuality?.completenessScore || 0}% (mínimo 50% necessário)\n` +
+            `Avisos: ${errorData.dataQuality?.warnings?.join('; ') || 'Nenhum'}`
+          )
+        }
+
+        throw new Error(errorMsg)
       }
 
       const auditResult: AuditResponse = await response.json()
