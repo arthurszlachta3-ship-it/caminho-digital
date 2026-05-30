@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { diagnosticEngine, DiagnosticInput } from '@/lib/diagnostic-engine'
-import { mockDiagnosticEngine } from '@/lib/diagnostic-engine.mock'
 
 export const runtime = 'nodejs'
 export const maxDuration = 60

@@ -1,8 +1,8 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { NextResponse } from 'next/server'
 
 export const runtime = 'nodejs'
 
-export async function POST(request: NextRequest) {
+export async function POST() {
   return NextResponse.json({
     success: true,
     message: "Simple test endpoint working!",
