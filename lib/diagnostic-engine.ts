@@ -1,9 +1,9 @@
 /**
  * Diagnostic Engine for Caminho Digital
- * Analyzes digital presence across channels using Claude AI
+ * Analyzes digital presence across channels using Groq AI
  */
 
-import Anthropic from '@anthropic-ai/sdk'
+import Groq from 'groq-sdk'
 
 export type Channel = 'instagram' | 'tiktok' | 'youtube' | 'website'
 export type ImpactLevel = 'high' | 'medium' | 'low'
@@ -61,16 +61,16 @@ export interface DiagnosticResult {
 }
 
 class DiagnosticEngine {
-  private client: Anthropic | null = null
-  private model = 'claude-3-opus'
+  private client: Groq | null = null
+  private model = 'mixtral-8x7b-32768'
 
-  private getClient(): Anthropic {
+  private getClient(): Groq {
     if (!this.client) {
-      const apiKey = process.env.ANTHROPIC_API_KEY
+      const apiKey = process.env.GROQ_API_KEY
       if (!apiKey) {
-        throw new Error('ANTHROPIC_API_KEY not configured')
+        throw new Error('GROQ_API_KEY not configured')
       }
-      this.client = new Anthropic({ apiKey })
+      this.client = new Groq({ apiKey })
     }
     return this.client
   }
@@ -79,9 +79,9 @@ class DiagnosticEngine {
     const prompt = this.buildPrompt(input)
     const client = this.getClient()
 
-    const message = await client.messages.create({
+    const message = await client.chat.completions.create({
       model: this.model,
-      max_tokens: 4000, // Aumentado para suportar análises mais detalhadas
+      max_tokens: 4000,
       messages: [
         {
           role: 'user',
@@ -90,12 +90,12 @@ class DiagnosticEngine {
       ]
     })
 
-    const response = message.content[0]
-    if (response.type !== 'text') {
-      throw new Error('Unexpected response type from Claude')
+    const response = message.choices[0].message.content
+    if (!response || typeof response !== 'string') {
+      throw new Error('Unexpected response type from AI')
     }
 
-    const result = this.parseResponse(response.text, input.businessName)
+    const result = this.parseResponse(response, input.businessName)
     return result
   }
 
