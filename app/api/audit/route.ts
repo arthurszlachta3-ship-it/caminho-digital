@@ -8,7 +8,7 @@
  */
 
 import { orchestrateDataCollection, buildClaudePromptFromRealData } from "@/lib/data-collectors/orchestrator"
-import { Anthropic } from "@anthropic-ai/sdk"
+import Groq from "groq-sdk"
 
 export const runtime = "nodejs"
 
@@ -102,31 +102,34 @@ export async function POST(request: Request): Promise<Response> {
       )
     }
 
-    // 🧠 FASE 2: Claude analisa dados REAIS
-    console.log(`[AUDIT] Enviando dados para Claude...`)
+    // 🧠 FASE 2: IA analisa dados REAIS (usando Groq)
+    console.log(`[AUDIT] Enviando dados para análise de IA...`)
 
-    const claudePrompt = buildClaudePromptFromRealData(auditData)
+    const prompt = buildClaudePromptFromRealData(auditData)
 
-    const client = new Anthropic()
-    const message = await client.messages.create({
-      model: "claude-3-opus",
+    const client = new Groq({
+      apiKey: process.env.GROQ_API_KEY
+    })
+
+    const message = await client.chat.completions.create({
+      model: "mixtral-8x7b-32768",
       max_tokens: 2000,
       messages: [
         {
           role: "user",
-          content: claudePrompt,
+          content: prompt,
         },
       ],
     })
 
-    // Parse resposta de Claude
-    const claudeResponse = message.content[0]
-    if (claudeResponse.type !== "text") {
-      throw new Error("Unexpected Claude response type")
+    // Parse resposta da IA
+    const aiResponse = message.choices[0].message.content
+    if (!aiResponse || typeof aiResponse !== "string") {
+      throw new Error("Unexpected AI response type")
     }
 
     // Extrair análise estruturada
-    const analysis = parseClaudeAnalysis(claudeResponse.text)
+    const analysis = parseClaudeAnalysis(aiResponse)
 
     return Response.json({
       success: true,
