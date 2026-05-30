@@ -109,7 +109,7 @@ export async function POST(request: Request): Promise<Response> {
 
     const client = new Anthropic()
     const message = await client.messages.create({
-      model: "claude-3-opus-20250219",
+      model: "claude-opus-4-1-20250805",
       max_tokens: 2000,
       messages: [
         {
