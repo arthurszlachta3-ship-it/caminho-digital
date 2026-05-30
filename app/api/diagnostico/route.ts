@@ -27,10 +27,8 @@ export async function POST(request: NextRequest) {
       currentFollowers: body.currentFollowers
     }
 
-    // Usar mock em desenvolvimento se ANTHROPIC_API_KEY não estiver configurado
-    // TEMPORARY: Using mock engine while model compatibility is resolved
-    const useRealApi = false // !!process.env.ANTHROPIC_API_KEY && process.env.NODE_ENV === 'production'
-    const engine = useRealApi ? diagnosticEngine : mockDiagnosticEngine
+    // Usar sempre a API real (agora com Groq)
+    const engine = diagnosticEngine
 
     // Executar análise
     const result = await engine.analyze(input)
